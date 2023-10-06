@@ -1,0 +1,1 @@
+from .wine_price_predictor import WinePricePredictor

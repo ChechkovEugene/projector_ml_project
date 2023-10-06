@@ -1,0 +1,41 @@
+{"samples":[
+  {
+    "Producer": "Maison Bouey",
+    "Region": "Бордо",
+    "Country": "Франція",
+    "Color": "біле",
+    "Type": "біле",
+    "Style": "Бадьоре зелене",
+    "Sweetness": "сухе",
+    "Alcohol": 11.0,
+    "Sweet": 1,
+    "Year": 2020.0,
+    "Volume": 0.75 
+  },
+  {
+    "Producer": "Maison Bouey",
+    "Region": "Бордо",
+    "Country": "Франція",
+    "Color": "біле",
+    "Type": "біле",
+    "Style": "Бадьоре зелене",
+    "Sweetness": "сухе",
+    "Alcohol": 11.0,
+    "Sweet": 1,
+    "Year": 2020.0,
+    "Volume": 0.75 
+  },
+  {
+    "Producer": "Maison Bouey",
+    "Region": "Бордо",
+    "Country": "Франція",
+    "Color": "біле",
+    "Type": "біле",
+    "Style": "Бадьоре зелене",
+    "Sweetness": "сухе",
+    "Alcohol": 11.0,
+    "Sweet": 1,
+    "Year": 2020.0,
+    "Volume": 0.75 
+  }
+]}
