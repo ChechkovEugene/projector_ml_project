@@ -4,7 +4,7 @@
 .ipynb_checkpoints/
 __pycache__/
 
-run_scripts/model/
-run_scripts/data/
-run_scripts/parsed_data/
+model/
+data/
+parsed_data/
 venv/

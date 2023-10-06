@@ -10,7 +10,7 @@ from src.predictor import WinePricePredictor
 logging.getLogger("transformers").setLevel(logging.ERROR)
 
 
-MODEL_PATH = "run_scripts/model/"
+MODEL_PATH = "model/"
 PORT = 1492
 
 
