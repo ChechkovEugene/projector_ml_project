@@ -5,7 +5,7 @@
     "eta": 0.3,
     "verbosity": 0,
     "nthread": 10,
-    "n_rounds": 319,
+    "n_rounds": 261,
     "max_depth": 25
   }
 }

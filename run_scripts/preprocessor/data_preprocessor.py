@@ -17,6 +17,17 @@ COLUMN_NAMES_ENGLISH = ['Title','Producer','Vendor_code','Price','Temperature','
                 'Endurance','Grapes_composition','Sweet','Alcohol','Harvest','Additional_color',
                 'Aroma','Taste','Interesting','Style','Potential','Degustations']
 
+BEST_CATEGORIES = ["PDO", "DOP", "AOP", "AOC", "VDQS", "DOCG", "DOC", "DO", "QmP", 
+                   "P.D.O", "D.O.P", "A.O.P", "A.O.C", "V.D.Q.S", "D.O.C.G", "D.O.C", "D.O", "Q.m.P",
+                   "Denominacion de Origen Calificada", "Appellation", "Denominazione di Origine Controllata",
+                   "Denominacao", "Denominazione", "Аppellation", "Appelalation", "Denominacion",
+                   "Denomination", "Quali", "Origin", "Origen", "VSQ"]
+
+REGION_CATEGORIES = ["PGI", "IGP", "VdP", "VdT", "IGT", "VDT", "IPR", "Vinho Reginal", "QBA",
+                     "P.G.I", "I.G.P", "V.d.P", "V.d.T", "I.G.T", "V.D.T", "I.P.R", "Q.B.A",
+                     "Indicazione Geografica Tipica", "Indicazione Geografica Protette",
+                     "Indication Geographique Protegee", "Geografica", "Regional", "Pays", "Vino de la Tierra"]
+
 class DataPreprocessor:
 
     def preprocess_data(self, df: pd.DataFrame) -> pd.DataFrame:
@@ -24,6 +35,7 @@ class DataPreprocessor:
         df = self.clear_data(df)
         df.dropna(subset=['Price'], inplace=True)
         df = self.fill_na(df)
+        df = self.process_classification(df)
         df = self.process_categorical_columns(df)
         df = self.process_grape_column(df)
         df = self.add_text_column(df)
@@ -69,6 +81,8 @@ class DataPreprocessor:
         df['Style'] = df['Style'].astype('category')
         df["Sweetness"].fillna("NA", inplace=True)
         df['Sweetness'] = df['Sweetness'].astype('category')
+        df["Classification_Category"].fillna("NA", inplace=True)
+        df['Classification_Category'] = df['Classification_Category'].astype('category')
         return df
 
     def process_grape_column(self, df: pd.DataFrame) -> pd.DataFrame:
@@ -94,4 +108,18 @@ class DataPreprocessor:
                              'Interesting',
                              'Potential',
                              'Degustations']].apply(lambda x: ','.join(x.dropna()), axis=1)
+        return df
+    
+    def get_category_by_classification(self, classification):
+        if any(cat.lower() in str(classification).lower() for cat in BEST_CATEGORIES):
+            return "Best"
+        if any(cat.lower() in str(classification).lower() for cat in REGION_CATEGORIES):
+            return "Region"
+        if classification is not np.NaN:
+            return "Ordinary"
+        else:
+            return classification
+        
+    def process_classification(self, df: pd.DataFrame) -> pd.DataFrame:
+        df['Classification_Category'] = df['Classification'].apply(self.get_category_by_classification)
         return df

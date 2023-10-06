@@ -26,7 +26,7 @@ numerical = [
 categorical = [
     'Producer',
     'Region', 'Country', 'Color', 'Type',
-    'Style', 'Sweetness'
+    'Style', 'Sweetness', 'Classification_Category'
 ]
 
 def main() -> None:
@@ -37,7 +37,6 @@ def main() -> None:
     data_preprocessor = DataPreprocessor()
     df = pd.read_csv(os.path.join(DATA_FOLDER, "wines.csv"), index_col=0)
     df = data_preprocessor.preprocess_data(df)
-
     df['Price'] = (df['Price']).apply(np.log)
     grape_count = parameters['grape_count'] \
         if parameters and 'grape_count' in parameters else 3
@@ -98,6 +97,7 @@ def main() -> None:
     else:
         xgb_train = xgb.DMatrix(X_train, y_train, feature_names=list(X_train.columns.values))
 
+    print(X_train.info())
     results = xgb.cv(parameters, xgb_train, num_rounds, early_stopping_rounds=10,
                     folds=cv, verbose_eval=10)
 

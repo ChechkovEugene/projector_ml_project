@@ -26,7 +26,7 @@ numerical = [
 categorical = [
     'Producer',
     'Region', 'Country', 'Color', 'Type',
-    'Style', 'Sweetness'
+    'Style', 'Sweetness', 'Classification_Category'
 ]
 
 def main() -> None:
